@@ -12,8 +12,9 @@ const Logo = (props) => {
 };
 
 const Link = styled.a`
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
+    max-width: 138px;
 `;
 
 const Wrapper = styled.h1`
