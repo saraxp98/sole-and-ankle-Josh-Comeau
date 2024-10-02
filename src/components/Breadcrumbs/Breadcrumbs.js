@@ -18,15 +18,17 @@ Breadcrumbs.Crumb = ({ href, children, delegated }) => {
 };
 
 const CrumbWrapper = styled.div`
-  &:not(:first-of-type) {
-    margin-left: 8px;
+    font-weight: 500;    
 
-    &::before {
-      content: '/';
-      margin-right: 8px;
-      color: ${COLORS.gray[300]};
+    &:not(:first-of-type) {
+        margin-left: 8px;
+
+        &::before {
+            content: '/';
+            margin-right: 8px;
+            color: ${COLORS.gray[300]};
+        }
     }
-  }
 `;
 
 const CrumbLink = styled.a`

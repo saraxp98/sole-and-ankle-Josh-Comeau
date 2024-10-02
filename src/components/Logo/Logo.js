@@ -15,6 +15,7 @@ const Link = styled.a`
     text-decoration: none;
     color: inherit;
     max-width: 138px;
+    line-height: 1.761rem;
 `;
 
 const Wrapper = styled.h1`

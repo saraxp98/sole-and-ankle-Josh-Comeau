@@ -14,6 +14,11 @@ const ShoeIndex = ({sortId, setSortId}) => {
         <Wrapper>
             <MainColumn>
                 <Header>
+                    <Breadcrumbs>
+                        <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+                        <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+                        <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
+                    </Breadcrumbs>
                     <Title>Running</Title>
                     <Select label="Sort" value={sortId} onChange={(ev) => setSortId(ev.target.value)}>
                         <option value="newest">Newest Releases</option>
@@ -21,14 +26,10 @@ const ShoeIndex = ({sortId, setSortId}) => {
                     </Select>
                 </Header>
                 <Spacer size={34}/>
-                <ShoeGrid/>
+                {/*<ShoeGrid/>*/}
             </MainColumn>
             <LeftColumn>
-                <Breadcrumbs>
-                    <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-                    <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-                    <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
-                </Breadcrumbs>
+
                 <Spacer size={42}/>
                 <ShoeSidebar/>
             </LeftColumn>
@@ -42,11 +43,18 @@ const LeftColumn = styled.div``;
 
 const MainColumn = styled.div``;
 
-const Header = styled.header``;
+const Header = styled.header`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
 
 const Title = styled.h2`
     font-size: 1.5rem;
+    line-height: 1.5rem;
     font-weight: ${WEIGHTS.medium};
+    margin-right: auto;
+    margin-left: 32px;
 `;
 
 export default ShoeIndex;

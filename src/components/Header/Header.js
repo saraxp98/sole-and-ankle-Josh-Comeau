@@ -9,7 +9,7 @@ const Header = () => {
     // Our site features two visual headers, but they should be
     // grouped semantically as a single header.
     return (
-        <header>
+        <header style={{lineHeight: '1.028 rem'}}>
             <SuperHeader/>
             <MainHeader>
                 <Logo/>
@@ -38,6 +38,7 @@ const MainHeader = styled.div`
 const Nav = styled.nav`
     display: flex;
     gap: 48px;
+    line-height: 1.321rem;
 `;
 
 const NavLink = styled.a`

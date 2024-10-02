@@ -44,7 +44,6 @@ const Wrapper = styled.div`
 const MarketingMessage = styled.span`
     color: ${COLORS.white};
     margin-right: auto;
-    line-height: 16.44px;
 `;
 
 const HelpLink = styled.a`
