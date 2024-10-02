@@ -46,7 +46,7 @@ const MainColumn = styled.div``;
 const Header = styled.header`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
 `;
 
 const Title = styled.h2`
