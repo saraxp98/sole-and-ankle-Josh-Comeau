@@ -33,8 +33,8 @@ const Select = ({ label, value, children, ...delegated }) => {
 };
 
 const Wrapper = styled.label`
-    display: inline-flex;
-    align-items: center;
+    display: flex;
+    align-items: baseline;
     line-height: 1.174rem;
 `;
 
