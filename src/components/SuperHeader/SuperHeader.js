@@ -6,6 +6,7 @@ import {COLORS, WEIGHTS} from '../../constants';
 import SearchInput from '../SearchInput';
 import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
+import Spacer from "../Spacer";
 
 const SuperHeader = () => {
     return (
@@ -13,32 +14,30 @@ const SuperHeader = () => {
             <MarketingMessage>
                 Free shipping on domestic orders over $75!
             </MarketingMessage>
-            <RightWrapper>
-                <SearchInput/>
-                <HelpLink href="/help">Help</HelpLink>
-                <UnstyledButton>
-                    <Icon id="shopping-bag" size={24} strokeWidth={1}/>
-                </UnstyledButton>
-            </RightWrapper>
+
+            <SearchInput/>
+
+            <Spacer size={24}/>
+            <HelpLink href="/help">Help</HelpLink>
+            <Spacer size={24}/>
+
+            <UnstyledButton>
+                <Icon id="shopping-bag" size={24} strokeWidth={1}/>
+            </UnstyledButton>
         </Wrapper>
     );
 };
 
-const RightWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-`
-
 const Wrapper = styled.div`
+    display: flex;
+    height: 40px;
+    align-items: center;
+    padding-inline: 32px;
+    
     font-size: 0.875rem;
     font-weight: ${WEIGHTS.normal};
     color: ${COLORS.gray[300]};
     background-color: ${COLORS.gray[900]};
-    padding-inline: 32px;
-    height: 40px;
-    display: flex;
-    align-items: center;
 `;
 
 const MarketingMessage = styled.span`
