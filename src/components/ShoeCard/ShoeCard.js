@@ -70,8 +70,8 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
-    width: 344px;
-    height: 370px;
+    //width: 344px; /*Con la grid*/
+    //height: 370px; /*Con la grid*/
     margin-bottom: auto;
     position: relative;
 `;
@@ -81,9 +81,9 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-    display: block;
     width: 100%;
-    height: 312px;
+    display: block;
+    //height: 312px; /*Con la grid*/
     border-radius: 16px 16px 4px 4px;
 `;
 

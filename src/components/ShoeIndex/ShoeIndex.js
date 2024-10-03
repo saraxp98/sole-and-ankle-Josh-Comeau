@@ -23,7 +23,7 @@ const ShoeIndex = ({sortId, setSortId}) => {
 
                 <Spacer size={34}/>
 
-                {/*<ShoeGrid/>*/}
+                <ShoeGrid/>
             </MainColumn>
 
             <LeftColumn>
