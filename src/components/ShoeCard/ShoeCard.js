@@ -1,86 +1,118 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
-import { formatPrice, pluralize, isNewShoe } from '../../utils';
+import {COLORS, WEIGHTS} from '../../constants';
+import {formatPrice, isNewShoe, pluralize} from '../../utils';
 import Spacer from '../Spacer';
 
 const ShoeCard = ({
-  slug,
-  name,
-  imageSrc,
-  price,
-  salePrice,
-  releaseDate,
-  numOfColors,
-}) => {
-  // There are 3 variants possible, based on the props:
-  //   - new-release
-  //   - on-sale
-  //   - default
-  //
-  // Any shoe released in the last month will be considered
-  // `new-release`. Any shoe with a `salePrice` will be
-  // on-sale. In theory, it is possible for a shoe to be
-  // both on-sale and new-release, but in this case, `on-sale`
-  // will triumph and be the variant used.
-  // prettier-ignore
-  const variant = typeof salePrice === 'number'
-    ? 'on-sale'
-    : isNewShoe(releaseDate)
-      ? 'new-release'
-      : 'default'
+                      slug, name, imageSrc, price, salePrice, releaseDate, numOfColors,
+                  }) => {
+    // There are 3 variants possible, based on the props:
+    //   - new-release
+    //   - on-sale
+    //   - default
+    //
+    // Any shoe released in the last month will be considered
+    // `new-release`. Any shoe with a `salePrice` will be
+    // on-sale. In theory, it is possible for a shoe to be
+    // both on-sale and new-release, but in this case, `on-sale`
+    // will triumph and be the variant used.
 
-  return (
-    <Link href={`/shoe/${slug}`}>
-      <Wrapper>
-        <ImageWrapper>
-          <Image alt="" src={imageSrc} />
-        </ImageWrapper>
-        <Spacer size={12} />
-        <Row>
-          <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
-        </Row>
-        <Row>
-          <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
-        </Row>
-      </Wrapper>
-    </Link>
-  );
+    const variant = typeof salePrice === 'number' ? 'on-sale' : isNewShoe(releaseDate) ? 'new-release' : 'default'
+    const isOnSale = variant === 'on-sale';
+    const isJustReleased = variant === 'new-release';
+    const bgColor = isOnSale ? COLORS.primary : COLORS.secondary;
+
+    return (<Link href={`/shoe/${slug}`}>
+        <Wrapper>
+            <ImageWrapper>
+                <Image alt="" src={imageSrc}/>
+            </ImageWrapper>
+            <Spacer size={12}/>
+            <Row>
+                <Name>{name}</Name>
+                <Price style={{
+                    'text-decoration': isOnSale ? 'line-through' : 'none', 'color': isOnSale ? COLORS.gray[700] : ''
+                }}>
+                    {formatPrice(price)}
+                </Price>
+            </Row>
+            <Row>
+                <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+                {variant === 'on-sale' && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
+            </Row>
+
+            {(isOnSale || isJustReleased) && <ShoeFlag style={{
+                '--bgColor': bgColor
+            }}>{isJustReleased ? 'Just Released!' : 'Sale'}</ShoeFlag>}
+
+        </Wrapper>
+    </Link>);
 };
 
-const Link = styled.a`
-  text-decoration: none;
-  color: inherit;
+const ShoeFlag = styled.div`
+    background-color: var(--bgColor);
+    width: fit-content;
+    padding: 7px 9px 9px 11px;
+    position: absolute;
+    border-radius: 2px;
+    color: ${COLORS.white};
+    line-height: 1.028rem;
+    font-size: 14px;
+    right: 0;
+    top: 12px;
 `;
 
-const Wrapper = styled.article``;
+const Link = styled.a`
+    text-decoration: none;
+    color: inherit;
+`;
+
+const Wrapper = styled.article`
+    width: 344px;
+    height: 370px;
+    margin-bottom: auto;
+    position: relative;
+`;
 
 const ImageWrapper = styled.div`
-  position: relative;
+    padding-right: 4px;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+    display: block;
+    width: 100%;
+    height: 312px;
+    border-radius: 16px 16px 4px 4px;
+`;
 
 const Row = styled.div`
-  font-size: 1rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
 `;
 
 const Name = styled.h3`
-  font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.gray[900]};
+    font-weight: ${WEIGHTS.medium};
+    color: ${COLORS.gray[900]};
+    line-height: 1.174rem;
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+    font-weight: ${WEIGHTS.normal};
+    line-height: 1rem;
+`;
 
 const ColorInfo = styled.p`
-  color: ${COLORS.gray[700]};
+    line-height: 1.174rem;
+    color: ${COLORS.gray[700]};
 `;
 
 const SalePrice = styled.span`
-  font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.primary};
+    font-weight: ${WEIGHTS.medium};
+    color: ${COLORS.primary};
 `;
 
 export default ShoeCard;

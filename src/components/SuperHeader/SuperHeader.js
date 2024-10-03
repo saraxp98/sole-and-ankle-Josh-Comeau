@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {COLORS} from '../../constants';
+import {COLORS, WEIGHTS} from '../../constants';
 
 import SearchInput from '../SearchInput';
 import UnstyledButton from '../UnstyledButton';
@@ -32,7 +32,7 @@ const RightWrapper = styled.div`
 
 const Wrapper = styled.div`
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: ${WEIGHTS.normal};
     color: ${COLORS.gray[300]};
     background-color: ${COLORS.gray[900]};
     padding-inline: 32px;

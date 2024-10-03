@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS } from '../../constants';
+import {COLORS, WEIGHTS} from '../../constants';
 
 const Breadcrumbs = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
@@ -18,8 +18,8 @@ Breadcrumbs.Crumb = ({ href, children, delegated }) => {
 };
 
 const CrumbWrapper = styled.div`
-    font-weight: 500;    
-
+    font-weight: ${WEIGHTS.normal};
+    
     &:not(:first-of-type) {
         margin-left: 8px;
 
