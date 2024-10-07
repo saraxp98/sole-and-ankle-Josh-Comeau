@@ -28,12 +28,18 @@ const ShoeCard = ({
         <Wrapper>
             <ImageWrapper>
                 <Image alt="" src={imageSrc}/>
+                {(isOnSale || isJustReleased) && <Flag style={{
+                    '--bgColor': bgColor
+                }}>
+                    {isJustReleased ? 'Just Released!' : 'Sale'}
+                </Flag>}
             </ImageWrapper>
             <Spacer size={12}/>
             <Row>
                 <Name>{name}</Name>
                 <Price style={{
-                    'text-decoration': isOnSale ? 'line-through' : 'none', 'color': isOnSale ? COLORS.gray[700] : ''
+                    '--color': isOnSale ? COLORS.gray[700] : '',
+                    '--text-decoration': isOnSale ? 'line-through' : '',
                 }}>
                     {formatPrice(price)}
                 </Price>
@@ -42,26 +48,22 @@ const ShoeCard = ({
                 <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
                 {variant === 'on-sale' && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
             </Row>
-
-            {(isOnSale || isJustReleased) && <ShoeFlag style={{
-                '--bgColor': bgColor
-            }}>{isJustReleased ? 'Just Released!' : 'Sale'}</ShoeFlag>}
-
         </Wrapper>
     </Link>);
 };
 
-const ShoeFlag = styled.div`
-    background-color: var(--bgColor);
-    width: fit-content;
-    padding: 7px 9px 9px 11px;
+const Flag = styled.div`
     position: absolute;
-    border-radius: 2px;
-    color: ${COLORS.white};
-    line-height: 1.028rem;
-    font-size: 14px;
-    right: 0;
+    right: -4px;
     top: 12px;
+    background-color: var(--bgColor);
+    height: 32px;
+    padding: 0 10px;
+    font-size: ${14 / 16}rem;
+    font-weight: ${WEIGHTS.bold};
+    line-height: 32px; /* dev'essere alta tanto quanto il font-size */
+    color: ${COLORS.white};
+    border-radius: 2px;
 `;
 
 const Link = styled.a`
@@ -101,6 +103,8 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
+    color: var(--color);
+    text-decoration: var(--text-decoration);
     font-weight: ${WEIGHTS.normal};
     line-height: 1rem;
 `;
